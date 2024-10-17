@@ -4,8 +4,10 @@
  */
 package Juego;
 
+import Graficos.Sprite;
 import Graficos.pantalla;
 import control.teclado;
+import entes.criatura.Jugador;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -38,8 +40,7 @@ public class juego extends Canvas implements Runnable {
     private static int aps=0;
     private static int fps =0;
     
-    private static int x =0;
-    private static int y=0;
+
     
     private static JFrame ventana;
     private static Thread thread;
@@ -47,6 +48,8 @@ public class juego extends Canvas implements Runnable {
     private static pantalla pantalla;
     
     private static Mapa mapa;
+    
+    private static Jugador jugador;
     
     private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
     
@@ -58,9 +61,12 @@ public class juego extends Canvas implements Runnable {
         setPreferredSize(new Dimension(ANCHO, ALTO));
         pantalla  = new pantalla(ANCHO, ALTO);
        // mapa = new MapaGenerado(128, 128);
-       mapa =new MapaCargado("/mapas/MAPA.png");
+       
         teclado = new teclado();
         addKeyListener(teclado);
+        
+        mapa =new MapaCargado("/mapas/MAPA.png");
+       jugador = new Jugador(teclado, Sprite.DER, 311, 223);
 
         ventana = new JFrame(NOMBRE);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,18 +106,8 @@ public class juego extends Canvas implements Runnable {
         
         teclado.actualizar();
         
-        if(teclado.arriba){
-           y--;
-        }
-        if(teclado.abajo){
-            y++;
-        }
-        if(teclado.derecha){
-           x++;
-        }
-        if(teclado.izquierda){
-            x--;
-        }
+        jugador.actualizar();
+        
         
         aps++;
 
@@ -126,7 +122,8 @@ public class juego extends Canvas implements Runnable {
         }
         
         pantalla.limpiar();
-        mapa.mostrar(x, y, pantalla);
+        mapa.mostrar(jugador.obtenerPosicionX() - pantalla.obtenAncho()/2 + jugador.obtenSprite().obtenLado()/2, jugador.obtenerPosicionY() - pantalla.obtenAlto()/2 + jugador.obtenSprite().obtenLado()/2, pantalla);
+        jugador.mostrar(pantalla);
         
         
         System.arraycopy(pantalla.pixeles, 0, pixeles, 0, pixeles.length);
@@ -138,7 +135,8 @@ public class juego extends Canvas implements Runnable {
         Graphics g = estrategia.getDrawGraphics();
         g.drawImage(imagen, 0, 0, getWidth(),getHeight(),null);
         g.setColor(Color.white);
-        g.fillRect(ANCHO/2, ALTO / 2, 16, 16);
+        g.drawString("X: " + jugador.obtenerPosicionX(), 10, 20);
+        g.drawString("Y: " + jugador.obtenerPosicionY(), 10, 35);
         
         g.dispose();
         

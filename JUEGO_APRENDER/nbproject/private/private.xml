@@ -4,16 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/Graficos/pantalla.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/control/teclado.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/mapa/MapaCargado.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/Graficos/HojaSprites.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/recursos/texturas/HOJA_SPRITES.png</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/mapa/MapaGenerado.java</file>
+            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/recursos/texturas/CARROSPRITE.png</file>
             <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/Juego/juego.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/mapa/Mapa.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/icono/CARROICONO.png</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/mapa/cuadro/Cuadro.java</file>
-            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/Graficos/Sprite.java</file>
+            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/entes/criatura/Jugador.java</file>
+            <file>file:/C:/Users/lucho/OneDrive/Documentos/JUEGOAPRENDIZAJE/juego_aprendizaje/JUEGO_APRENDER/src/entes/criatura/Criatura.java</file>
         </group>
     </open-files>
 </project-private>

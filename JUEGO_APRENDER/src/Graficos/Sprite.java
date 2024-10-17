@@ -17,7 +17,17 @@ public class Sprite {
     public int[] pixeles;
     private HojaSprites hoja;
     
-    //coleccion de sprites
+    //Coleccion de sprites del carro
+    public static final Sprite IZQ  = new Sprite(32,0,0,HojaSprites.jugador);
+    public static final Sprite DER  = new Sprite(32,1,0,HojaSprites.jugador);
+    public static final Sprite ARR  = new Sprite(32,0,1,HojaSprites.jugador);
+    public static final Sprite ABA  = new Sprite(32,1,1,HojaSprites.jugador);
+    
+    //Fin de la coleccion
+    
+    
+    
+    //coleccion de sprites del mapa 
     public static final Sprite VACIO = new Sprite(16,0);
     public static final Sprite ASFALTO = new Sprite(16,1,0,HojaSprites.desierto);
     public static final Sprite BANQUETA = new Sprite(16,0,0,HojaSprites.desierto);

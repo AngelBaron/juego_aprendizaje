@@ -21,6 +21,7 @@ public class HojaSprites {
     
     //coleccion de hojas de sprites
     public static HojaSprites desierto = new HojaSprites("/recursos/texturas/HOJA_SPRITES.png", 128, 128);
+    public static HojaSprites jugador = new HojaSprites("/recursos/texturas/CARROSPRITE.png", 128, 128);
     //fin de la coleccion
 
     public int obtenAncho() {

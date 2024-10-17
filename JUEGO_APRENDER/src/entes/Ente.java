@@ -11,8 +11,8 @@ import mapa.Mapa;
  * @author lucho
  */
 public abstract class Ente {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     
     private boolean eliminado = false;
     
