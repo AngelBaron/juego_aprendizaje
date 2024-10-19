@@ -7,6 +7,7 @@ package entes.criatura;
 import Graficos.Sprite;
 import Graficos.pantalla;
 import control.teclado;
+import mapa.Mapa;
 
 /**
  *
@@ -15,12 +16,14 @@ import control.teclado;
 public class Jugador extends Criatura{
     private teclado teclado;
     
-    public Jugador(teclado teclado, Sprite sprite){
+    public Jugador(Mapa mapa,teclado teclado, Sprite sprite){
+        this.mapa = mapa;
         this.teclado = teclado;
         this.sprite = sprite;
     }
     
-    public Jugador(teclado teclado,Sprite sprite, int posicionX, int posicionY){
+    public Jugador(Mapa mapa,teclado teclado,Sprite sprite, int posicionX, int posicionY){
+        this.mapa = mapa;
         this.teclado = teclado;
         this.x = posicionX;
         this.y = posicionY;

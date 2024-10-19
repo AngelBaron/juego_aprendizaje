@@ -16,17 +16,21 @@ public class Cuadro {
     public int x;
     public int y;
     
+    private String nombre;
+    
     public Sprite sprite;
+    
+    private boolean solido;
     
     public static final int LADO = 16;
     
     //Coleccion de cuadros
     public static final Cuadro VACIO = new Cuadro(Sprite.VACIO);
     public static final Cuadro ASFALTO = new Cuadro(Sprite.ASFALTO);
-    public static final Cuadro BANQUETA = new Cuadro(Sprite.BANQUETA);
+    public static final Cuadro BANQUETA = new Cuadro(Sprite.BANQUETA,true,"sasa");
     public static final Cuadro CALLE_MA = new Cuadro(Sprite.CALLE_MA);
     public static final Cuadro CALLE_Ma = new Cuadro(Sprite.CALLE_Ma);
-    public static final Cuadro BANQUETA_N = new Cuadro(Sprite.BANQUETA_N);
+    public static final Cuadro BANQUETA_N = new Cuadro(Sprite.BANQUETA_N,true,"sasa");
     public static final Cuadro PASTO_E_SI = new Cuadro(Sprite.PASTO_E_SI);
     public static final Cuadro PASTO_L_I = new Cuadro(Sprite.PASTO_L_I);
     public static final Cuadro PASTO_E_II = new Cuadro(Sprite.PASTO_E_II);
@@ -46,13 +50,25 @@ public class Cuadro {
     
     public Cuadro(Sprite sprite){
         this.sprite = sprite;
+        solido = false;
+    }
+    
+    public Cuadro (Sprite sprite, boolean solido, String nombre){
+        this.sprite = sprite;
+        this.solido = solido;
+        this.nombre= nombre;
     }
     
     public void mostrar(int x, int y, pantalla pantalla){
         pantalla.mostrarCuadro(x<<4, y<<4, this);
     }
     
-    public boolean solido(){
-        return false;
+    public String mostrarNombre(){
+        
+        return nombre;
+    }
+    
+    public boolean esSolido(){
+        return solido;
     }
 }

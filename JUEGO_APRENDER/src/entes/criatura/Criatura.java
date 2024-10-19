@@ -38,13 +38,59 @@ public abstract class Criatura extends Ente{
             direccion = 'n';
         }
         if(!estaEliminado()){
-            modificarPosicionX(desplazamientoX);
-            modificarPosicionY(desplazamientoY);
+            if(!enColision(desplazamientoX,0)){
+                modificarPosicionX(desplazamientoX);
+        }
+            if(!enColision(0,desplazamientoY)){
+                modificarPosicionY(desplazamientoY);
+            }
+            
+            
+            
         }
     }
     
-    private boolean enColision(){
-        return false;
+    private boolean enColision(int desplazamientoX, int desplazamientoY){
+        boolean colision=false;
+        
+        int posicionX = x + desplazamientoX;
+        int posicionY = y + desplazamientoY;
+        
+        int margenIzquierdo = -3;
+        int margenDerecho = -3;
+        
+        int margenSuperior = 0;
+        int margenInferior = -15;
+        
+        int bordeIzquierdo = (posicionX + margenDerecho) / sprite.obtenLado();
+        int bordeDerecho = (posicionX + margenDerecho + margenIzquierdo) / sprite.obtenLado();
+        int bordeSuperior = (posicionY + margenInferior) / sprite.obtenLado();
+        int bordeInferior = (posicionY + margenInferior + margenSuperior) / sprite.obtenLado();
+        
+        System.out.println("Posición X: " + posicionX + " - Posición Y: " + posicionY);
+    System.out.println("Borde Izquierdo: " + bordeIzquierdo + " - Borde Derecho: " + bordeDerecho);
+    System.out.println("Borde Superior: " + bordeSuperior + " - Borde Inferior: " + bordeInferior);
+        
+        if(mapa.obtenerCuadroCatalogo(bordeIzquierdo+bordeSuperior * mapa.obtenerAncho()).esSolido()){
+            
+            colision = true;
+        }
+        if(mapa.obtenerCuadroCatalogo(bordeIzquierdo+bordeInferior * mapa.obtenerAncho()).esSolido()){
+            
+            colision = true;
+        }
+        if(mapa.obtenerCuadroCatalogo(bordeDerecho+bordeSuperior * mapa.obtenerAncho()).esSolido()){
+            
+            colision = true;
+        }
+        if(mapa.obtenerCuadroCatalogo(bordeDerecho+bordeInferior * mapa.obtenerAncho()).esSolido()){
+            
+            colision = true;
+        }
+        
+        System.out.println("Cuadro en (" + bordeIzquierdo + "," + bordeSuperior + "): " + mapa.obtenerCuadroCatalogo(bordeIzquierdo+bordeSuperior * mapa.obtenerAncho()).mostrarNombre());
+        
+        return colision;
     }
     
     public Sprite obtenSprite(){

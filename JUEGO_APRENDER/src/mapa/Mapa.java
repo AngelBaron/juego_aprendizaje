@@ -34,6 +34,8 @@ public abstract class Mapa {
     
     
     
+    
+    
     protected void generarMapa(){
         
     }
@@ -67,9 +69,9 @@ public abstract class Mapa {
     }
     
     public Cuadro obtenCuadro(final int x, final int y){
-        if(x< 0 || y<0 || x>=ancho || y>=alto){
-            return Cuadro.VACIO;
-        }
+        //if(x< 0 || y<0 || x>=ancho || y>=alto){
+          //  return Cuadro.VACIO;
+        //}
         switch(cuadros[x+y*ancho]){
             case 0: 
                 return Cuadro.ASFALTO;
@@ -97,6 +99,15 @@ public abstract class Mapa {
         }
         
         
+    }
+    
+    public Cuadro obtenerCuadroCatalogo(int posicion){
+        
+        return cuadrosCatalogo[posicion];
+    }
+    
+    public int obtenerAncho(){
+        return ancho;
     }
     
 }
