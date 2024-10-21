@@ -17,12 +17,16 @@ public class Jugador extends Criatura{
     private teclado teclado;
     
     public Jugador(Mapa mapa,teclado teclado, Sprite sprite){
+        super();
         this.mapa = mapa;
         this.teclado = teclado;
         this.sprite = sprite;
+        this.esSolido=true;
     }
     
     public Jugador(Mapa mapa,teclado teclado,Sprite sprite, int posicionX, int posicionY){
+        super();
+        this.esSolido=true;
         this.mapa = mapa;
         this.teclado = teclado;
         this.x = posicionX;

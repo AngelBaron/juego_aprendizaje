@@ -6,6 +6,8 @@ package entes.criatura;
 
 import Graficos.Sprite;
 import entes.Ente;
+import java.awt.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +17,32 @@ public abstract class Criatura extends Ente{
     protected Sprite sprite;
     protected char direccion = 'n';
     protected boolean enMovimiento = false;
+    protected boolean esSolido = false;
+    int margenIzquierdo = -9;
+        int margenDerecho = 24;
+        
+        int margenSuperior = -3;
+        int margenInferior = 24;
+        
+    private static ArrayList<Criatura> criaturas = new ArrayList<>();
+
+    public Criatura() {
+        // Agregar la nueva criatura a la lista
+        System.out.println("SE AÑADE CRIATURA");
+        criaturas.add(this);
+    }
+
+    public void eliminar() {
+        // Eliminar la criatura de la lista si es eliminada
+        criaturas.remove(this);
+        super.eliminar();
+    }
+
+    public static ArrayList<Criatura> obtenerTodasLasCriaturas() {
+        System.out.println(criaturas);
+        
+        return criaturas;
+    }
     
     public void actualizar(){
         
@@ -22,6 +50,10 @@ public abstract class Criatura extends Ente{
     
     public void mostrar(){
         
+    }
+    
+    public void eliminarSprite(){
+        sprite = Sprite.VACIO2;
     }
     
     public void mover(int desplazamientoX, int desplazamientoY){
@@ -56,20 +88,14 @@ public abstract class Criatura extends Ente{
         int posicionX = x + desplazamientoX;
         int posicionY = y + desplazamientoY;
         
-        int margenIzquierdo = -3;
-        int margenDerecho = -3;
         
-        int margenSuperior = 0;
-        int margenInferior = -15;
         
-        int bordeIzquierdo = (posicionX + margenDerecho) / sprite.obtenLado();
-        int bordeDerecho = (posicionX + margenDerecho + margenIzquierdo) / sprite.obtenLado();
-        int bordeSuperior = (posicionY + margenInferior) / sprite.obtenLado();
-        int bordeInferior = (posicionY + margenInferior + margenSuperior) / sprite.obtenLado();
+        int bordeIzquierdo = (posicionX + margenDerecho) /16 ;
+        int bordeDerecho = (posicionX + margenDerecho + margenIzquierdo) /16 ;
+        int bordeSuperior = (posicionY + margenInferior)/16;
+        int bordeInferior = (posicionY + margenInferior + margenSuperior)/16 ;
         
-        System.out.println("Posición X: " + posicionX + " - Posición Y: " + posicionY);
-    System.out.println("Borde Izquierdo: " + bordeIzquierdo + " - Borde Derecho: " + bordeDerecho);
-    System.out.println("Borde Superior: " + bordeSuperior + " - Borde Inferior: " + bordeInferior);
+      //  System.out.println("BORDEIZsdaQ" + bordeIzquierdo + "|| BBORDEDERECHO" + bordeDerecho + "|| BORDESUPERIOR" + bordeSuperior + "|| BORDEINFERIOR" + bordeInferior);
         
         if(mapa.obtenerCuadroCatalogo(bordeIzquierdo+bordeSuperior * mapa.obtenerAncho()).esSolido()){
             
@@ -88,10 +114,32 @@ public abstract class Criatura extends Ente{
             colision = true;
         }
         
-        System.out.println("Cuadro en (" + bordeIzquierdo + "," + bordeSuperior + "): " + mapa.obtenerCuadroCatalogo(bordeIzquierdo+bordeSuperior * mapa.obtenerAncho()).mostrarNombre());
+        for (Criatura otraCriatura : criaturas) {
+            if (otraCriatura != this && otraCriatura.esSolido) {
+                int otraX = otraCriatura.x;
+                int otraY = otraCriatura.y;
+
+                if (posicionX + margenDerecho > otraX + otraCriatura.margenIzquierdo &&
+                    posicionX + margenIzquierdo < otraX + otraCriatura.margenDerecho &&
+                    posicionY + margenInferior > otraY + otraCriatura.margenSuperior &&
+                    posicionY + margenSuperior < otraY + otraCriatura.margenInferior) {
+                    colision = true;
+                      // Si ya hay colisión, no necesitas seguir comprobando
+                }
+            }
         
+        
+        
+        
+       // System.out.println(posicionX + "||" + posicionY);
+        //System.out.println("Cuadro en (" + bordeIzquierdo + "," + bordeSuperior + "): " + mapa.obtenerCuadroCatalogo(bordeIzquierdo+bordeSuperior * mapa.obtenerAncho()).mostrarNombre());
+        }
         return colision;
     }
+    
+    
+    
+    
     
     public Sprite obtenSprite(){
         return sprite;

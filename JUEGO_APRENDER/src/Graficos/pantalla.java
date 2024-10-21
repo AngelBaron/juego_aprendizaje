@@ -4,6 +4,13 @@
  */
 package Graficos;
 
+import entes.criatura.CARRO2;
+import entes.criatura.CARRO3;
+import entes.criatura.CARRO4;
+import entes.criatura.CARRO5;
+import entes.criatura.CARRO6;
+import entes.criatura.CARRO7;
+import entes.criatura.CARRO8;
 import entes.criatura.Jugador;
 import mapa.cuadro.Cuadro;
 
@@ -57,6 +64,160 @@ public class pantalla {
     }
     
     public void mostrarJugador(int compensacionX, int compensacionY, Jugador jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    
+    
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO2 jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO3 jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO4 jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO5 jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO6 jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO7 jugador){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY ;
+        for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){
+            int posicionY = y+compensacionY;
+            for(int x = 0; x<jugador.obtenSprite().obtenLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX<-jugador.obtenSprite().obtenLado() || posicionX>=ancho|| posicionY<0 || posicionY>=alto){
+                    break;
+                }
+                if(posicionX < 0){
+                    posicionX = 0;
+                }
+                //pixeles[posicionX + posicionY * ancho] = jugador.obtenSprite().pixeles[x+y * jugador.obtenSprite().obtenLado()];
+                int colorPixelJugador = jugador.obtenSprite().pixeles[x + y * jugador.obtenSprite().obtenLado()];
+                if(colorPixelJugador != 0xffbc0000){
+                    pixeles[posicionX + posicionY * ancho] = colorPixelJugador;
+                }
+            }
+        }
+    }
+    
+    public void mostrarJugador(int compensacionX, int compensacionY, CARRO8 jugador){
         compensacionX -= diferenciaX;
         compensacionY -= diferenciaY ;
         for(int y=0; y < jugador.obtenSprite().obtenLado(); y++){

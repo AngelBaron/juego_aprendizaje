@@ -29,6 +29,7 @@ public class Sprite {
     
     //coleccion de sprites del mapa 
     public static final Sprite VACIO = new Sprite(16,0);
+    public static final Sprite VACIO2 = new Sprite(16,0x00000000);
     public static final Sprite ASFALTO = new Sprite(16,1,0,HojaSprites.desierto);
     public static final Sprite BANQUETA = new Sprite(16,0,0,HojaSprites.desierto);
     public static final Sprite CALLE_MA = new Sprite(16,2,0,HojaSprites.desierto);
@@ -69,6 +70,17 @@ public class Sprite {
         }
         
     }
+    
+    public void ModificarSprite(final int color){
+       pixeles = new int[lado * lado];
+        
+        for(int i = 0; i< pixeles.length; i++){
+            pixeles[i] = color;
+        }
+    }
+    
+    
+    
     
     public Sprite(final int lado, final int color){
         this.lado = lado;
