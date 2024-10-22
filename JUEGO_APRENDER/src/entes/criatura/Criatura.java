@@ -5,6 +5,7 @@
 package entes.criatura;
 
 import Graficos.Sprite;
+import Graficos.pantalla;
 import entes.Ente;
 import java.awt.List;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public abstract class Criatura extends Ente{
     protected char direccion = 'n';
     protected boolean enMovimiento = false;
     protected boolean esSolido = false;
+    
+    public abstract void mostrar(pantalla pantalla);
     int margenIzquierdo = -9;
         int margenDerecho = 24;
         
