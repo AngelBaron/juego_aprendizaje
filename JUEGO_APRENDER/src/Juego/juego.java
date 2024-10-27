@@ -16,6 +16,7 @@ import entes.criatura.CARRO7;
 import entes.criatura.CARRO8;
 import entes.criatura.Criatura;
 import entes.criatura.Jugador;
+import entes.criatura.Persona;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -93,7 +94,10 @@ public class juego extends Canvas implements Runnable {
 
     private static final ImageIcon icono = new ImageIcon(juego.class.getResource("/icono/CARROICONO.png"));
 
-    private static List<Criatura> carritos = new ArrayList<>(); 
+    private static List<Criatura> carritos = new ArrayList<>();
+
+    private static List<Persona> personas = new ArrayList<>();
+
     private static List<int[]> puntosDeSpawn = Arrays.asList(
             new int[]{-1, 5}, // Punto de spawn 1
             new int[]{183, 384}, // Punto de spawn 2
@@ -130,19 +134,18 @@ public class juego extends Canvas implements Runnable {
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
+        // Generar personas
+        generarPersonas();
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-      
         System.out.print("Ingrese el número de carritos que desea generar: ");
         int numCarritos = scanner.nextInt();
 
-       
         juego jueg = new juego();
 
-        
         jueg.totalCarritos = numCarritos;
 
         jueg.iniciar();
@@ -150,10 +153,76 @@ public class juego extends Canvas implements Runnable {
 
     private void generarCarritos(int numCarritos) {
         for (int i = 0; i < numCarritos; i++) {
-           
+
             int spawnIndex = i % puntosDeSpawn.size();// aqui se genera el punto de spawn de forma ciclica pra cada punto
             generarCarritoEnPuntoDeSpawn(spawnIndex);
         }
+    }
+
+    private void generarPersonas() {
+       
+        Persona personaVerde = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 200, 80,"verde");
+        personaVerde.agregarNodo(208, 80);
+        personaVerde.agregarNodo(208, 205);
+        personaVerde.agregarNodo(368, 205);
+        personaVerde.agregarNodo(368, 80);
+        personas.add(personaVerde);
+        
+        Persona personaVerde2 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 50, 80,"verde");
+        personaVerde2.agregarNodo(208, 80);
+        personaVerde2.agregarNodo(208, 205);
+        personaVerde2.agregarNodo(368, 205);
+        personaVerde2.agregarNodo(368, 80);
+        personas.add(personaVerde2);
+        
+        Persona personaVerde3 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, -30, 285,"verde");
+        personaVerde3.agregarNodo(210, 285);
+        personaVerde3.agregarNodo(370, 285);
+        personaVerde3.agregarNodo(370, 450);
+        personaVerde3.agregarNodo(210, 450);
+        personaVerde3.agregarNodo(210, 285);
+        personas.add(personaVerde3);
+        
+        Persona personaVerde4 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 700, 80,"verde");
+        personaVerde4.agregarNodo(447, 80);
+        personaVerde4.agregarNodo(447, 500);
+        personaVerde4.agregarNodo(447, 285);
+        personaVerde4.agregarNodo(700, 285);
+        personaVerde4.agregarNodo(447, 285);
+        personas.add(personaVerde4);
+
+        Persona personaRosa = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 368, 80,"rosa");
+        personaRosa.agregarNodo(368, 80);
+        personaRosa.agregarNodo(368, 205);
+        personaRosa.agregarNodo(208, 205);
+        personaRosa.agregarNodo(208, 80);
+        personas.add(personaRosa);
+        
+        Persona personaRosa2 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 368, 80,"rosa");
+        personaRosa2.agregarNodo(-30, 80);
+        personaRosa2.agregarNodo(-30, 205);
+        personaRosa2.agregarNodo(130, 205);
+        personaRosa2.agregarNodo(130, 80);
+        personas.add(personaRosa2);
+        
+        Persona personaRosa3 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 700, 285,"rosa");
+        personaRosa3.agregarNodo(-30, 285);
+        personaRosa3.agregarNodo(-30, 480);
+        personaRosa3.agregarNodo(130, 480);
+        personaRosa3.agregarNodo(130, 285);
+        personaRosa3.agregarNodo(130, 80);
+        personaRosa3.agregarNodo(130, 285);
+        personas.add(personaRosa3);
+        
+        Persona personaRosa4 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 447, 500,"rosa");
+        personaRosa4.agregarNodo(447, 285);
+        personaRosa4.agregarNodo(700, 285);
+        personaRosa4.agregarNodo(700, 500);
+        personaRosa4.agregarNodo(447, 500);
+        
+        personas.add(personaRosa4);
+        
+        
     }
 
     private void generarCarritoEnPuntoDeSpawn(int index) {
@@ -207,7 +276,6 @@ public class juego extends Canvas implements Runnable {
         teclado.actualizar();
         jugador.actualizar();
 
-        
         if (!esperandoMasCarritos && carritosIntroducidos < totalCarritos) {
             tiempoUltimoCarrito++;
 
@@ -219,16 +287,21 @@ public class juego extends Canvas implements Runnable {
             }
         }
 
-        
         if (carritosIntroducidos == totalCarritos && !esperandoMasCarritos) {
-            esperandoMasCarritos = true; 
-            solicitarMasCarritos();      
+            esperandoMasCarritos = true;
+            solicitarMasCarritos();
         }
 
-        
         for (Criatura carrito : carritos) {
             if (!carrito.estaEliminado()) {
                 carrito.actualizar();
+            }
+        }
+
+        // Actualizar todas las personas
+        for (Persona persona : personas) {
+            if (!persona.estaEliminado()) {
+                persona.actualizar();
             }
         }
 
@@ -248,7 +321,7 @@ public class juego extends Canvas implements Runnable {
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "ingrese un numero valido");
-                solicitarMasCarritos();  
+                solicitarMasCarritos();
             }
         }).start();
     }
@@ -270,7 +343,14 @@ public class juego extends Canvas implements Runnable {
             if (!carrito.estaEliminado()) {
                 carrito.mostrar(pantalla);
             } else {
-                carrito.eliminarSprite(); 
+                carrito.eliminarSprite();
+            }
+        }
+
+        // Mostrar todas las personas
+        for (Persona persona : personas) {
+            if (!persona.estaEliminado()) {
+                persona.mostrar(pantalla);
             }
         }
 

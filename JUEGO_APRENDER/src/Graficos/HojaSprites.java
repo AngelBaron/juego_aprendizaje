@@ -15,15 +15,18 @@ import javax.imageio.ImageIO;
  * @author lucho
  */
 public class HojaSprites {
+
     private final int ancho;
     private final int alto;
     public final int[] pixeles;
-    
+
     //coleccion de hojas de sprites
     public static HojaSprites desierto = new HojaSprites("/recursos/texturas/HOJA_SPRITES.png", 128, 128);
     public static HojaSprites jugador = new HojaSprites("/recursos/texturas/CARROSPRITE.png", 128, 128);
-    //fin de la coleccion
+    // hoja de sprites para las personas
+    public static HojaSprites personas = new HojaSprites("/recursos/texturas/people_8px.png", 32, 64);
 
+    //fin de la coleccion
     public int obtenAncho() {
         return ancho;
     }
@@ -31,12 +34,12 @@ public class HojaSprites {
     public int obtenAlto() {
         return alto;
     }
-    
-    public HojaSprites(final String ruta,final int ancho, final int alto){
+
+    public HojaSprites(final String ruta, final int ancho, final int alto) {
         this.ancho = ancho;
         this.alto = alto;
-        
-        pixeles = new int[ancho *alto];
+
+        pixeles = new int[ancho * alto];
         BufferedImage imagen;
         try {
             imagen = ImageIO.read(HojaSprites.class.getResource(ruta));
@@ -44,10 +47,7 @@ public class HojaSprites {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
-        
+
     }
-    
-    
-    
+
 }
