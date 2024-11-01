@@ -27,6 +27,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -64,6 +65,9 @@ public class juego extends Canvas implements Runnable {
     private int totalCarritos = 0;         // Total de carritos a introducir
 
     private boolean esperandoMasCarritos = false;
+
+    private int contadorCarritos = 0;
+    private int totalCarritosSolicitados = 0;
 
     private static JFrame ventana;
     private static Thread thread;
@@ -139,14 +143,9 @@ public class juego extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Ingrese el número de carritos que desea generar: ");
-        int numCarritos = scanner.nextInt();
 
         juego jueg = new juego();
-
-        jueg.totalCarritos = numCarritos;
+        jueg.solicitarMasCarritos();
 
         jueg.iniciar();
     }
@@ -160,30 +159,30 @@ public class juego extends Canvas implements Runnable {
     }
 
     private void generarPersonas() {
-       
-        Persona personaVerde = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 200, 80,"verde");
+
+        Persona personaVerde = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 200, 80, "verde");
         personaVerde.agregarNodo(208, 80);
         personaVerde.agregarNodo(208, 205);
         personaVerde.agregarNodo(368, 205);
         personaVerde.agregarNodo(368, 80);
         personas.add(personaVerde);
-        
-        Persona personaVerde2 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 50, 80,"verde");
+
+        Persona personaVerde2 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 50, 80, "verde");
         personaVerde2.agregarNodo(208, 80);
         personaVerde2.agregarNodo(208, 205);
         personaVerde2.agregarNodo(368, 205);
         personaVerde2.agregarNodo(368, 80);
         personas.add(personaVerde2);
-        
-        Persona personaVerde3 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, -30, 285,"verde");
+
+        Persona personaVerde3 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, -30, 285, "verde");
         personaVerde3.agregarNodo(210, 285);
         personaVerde3.agregarNodo(370, 285);
         personaVerde3.agregarNodo(370, 450);
         personaVerde3.agregarNodo(210, 450);
         personaVerde3.agregarNodo(210, 285);
         personas.add(personaVerde3);
-        
-        Persona personaVerde4 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 700, 80,"verde");
+
+        Persona personaVerde4 = new Persona(mapa, Sprite.PERSONA_VERDE_PARADO_FRENTE, 700, 80, "verde");
         personaVerde4.agregarNodo(447, 80);
         personaVerde4.agregarNodo(447, 500);
         personaVerde4.agregarNodo(447, 285);
@@ -191,21 +190,21 @@ public class juego extends Canvas implements Runnable {
         personaVerde4.agregarNodo(447, 285);
         personas.add(personaVerde4);
 
-        Persona personaRosa = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 368, 80,"rosa");
+        Persona personaRosa = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 368, 80, "rosa");
         personaRosa.agregarNodo(368, 80);
         personaRosa.agregarNodo(368, 205);
         personaRosa.agregarNodo(208, 205);
         personaRosa.agregarNodo(208, 80);
         personas.add(personaRosa);
-        
-        Persona personaRosa2 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 368, 80,"rosa");
+
+        Persona personaRosa2 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 368, 80, "rosa");
         personaRosa2.agregarNodo(-30, 80);
         personaRosa2.agregarNodo(-30, 205);
         personaRosa2.agregarNodo(130, 205);
         personaRosa2.agregarNodo(130, 80);
         personas.add(personaRosa2);
-        
-        Persona personaRosa3 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 700, 285,"rosa");
+
+        Persona personaRosa3 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 700, 285, "rosa");
         personaRosa3.agregarNodo(-30, 285);
         personaRosa3.agregarNodo(-30, 480);
         personaRosa3.agregarNodo(130, 480);
@@ -213,16 +212,15 @@ public class juego extends Canvas implements Runnable {
         personaRosa3.agregarNodo(130, 80);
         personaRosa3.agregarNodo(130, 285);
         personas.add(personaRosa3);
-        
-        Persona personaRosa4 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 447, 500,"rosa");
+
+        Persona personaRosa4 = new Persona(mapa, Sprite.PERSONA_ROSA_PARADO_FRENTE, 447, 500, "rosa");
         personaRosa4.agregarNodo(447, 285);
         personaRosa4.agregarNodo(700, 285);
         personaRosa4.agregarNodo(700, 500);
         personaRosa4.agregarNodo(447, 500);
-        
+
         personas.add(personaRosa4);
-        
-        
+
     }
 
     private void generarCarritoEnPuntoDeSpawn(int index) {
@@ -272,6 +270,9 @@ public class juego extends Canvas implements Runnable {
         }
     }
 
+    
+    private boolean primeraSolicitud = true;
+
     private void actualizar() {
         teclado.actualizar();
         jugador.actualizar();
@@ -280,21 +281,35 @@ public class juego extends Canvas implements Runnable {
             tiempoUltimoCarrito++;
 
             if (tiempoUltimoCarrito >= tiempoEntreCarritos) {
-                // Introducir un nuevo carrito
                 generarCarritoEnPuntoDeSpawn(carritosIntroducidos % puntosDeSpawn.size());
                 carritosIntroducidos++;
                 tiempoUltimoCarrito = 0; // Reiniciar el contador
+                contadorCarritos++; // Incrementar el contador cuando se introduce un carrito nuevo
             }
         }
 
         if (carritosIntroducidos == totalCarritos && !esperandoMasCarritos) {
             esperandoMasCarritos = true;
-            solicitarMasCarritos();
+
+            
+            if (!primeraSolicitud) {
+                solicitarMasCarritos();
+            } else {
+                
+                primeraSolicitud = false;
+            }
         }
 
-        for (Criatura carrito : carritos) {
+        // Actualizar carritos y eliminar los que hayan terminado su recorrido
+        Iterator<Criatura> iterator = carritos.iterator();
+        while (iterator.hasNext()) {
+            Criatura carrito = iterator.next();
             if (!carrito.estaEliminado()) {
                 carrito.actualizar();
+            } else {
+                carrito.eliminarSprite();
+                iterator.remove();
+                contadorCarritos--;
             }
         }
 
@@ -318,9 +333,10 @@ public class juego extends Canvas implements Runnable {
                     carritosIntroducidos = 0;                   // Reiniciar el contador de carritos introducidos
                     tiempoUltimoCarrito = 0;                    // Reiniciar el tiempo del último carrito
                     esperandoMasCarritos = false;               // Reanudar la introducción de carritos
+                    totalCarritosSolicitados = numCarritos;    
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "ingrese un numero valido");
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido");
                 solicitarMasCarritos();
             }
         }).start();
@@ -347,7 +363,6 @@ public class juego extends Canvas implements Runnable {
             }
         }
 
-        // Mostrar todas las personas
         for (Persona persona : personas) {
             if (!persona.estaEliminado()) {
                 persona.mostrar(pantalla);
@@ -361,6 +376,8 @@ public class juego extends Canvas implements Runnable {
         g.setColor(Color.white);
         g.drawString("X: " + jugador.obtenerPosicionX(), 10, 20);
         g.drawString("Y: " + jugador.obtenerPosicionY(), 10, 35);
+        g.drawString("Carritos en pantalla: " + contadorCarritos, 420, 20); // Mostrar el contador de carritos
+        g.drawString("Total de carritos solicitados: " + totalCarritosSolicitados, 420, 35);
 
         g.dispose();
         estrategia.show();
