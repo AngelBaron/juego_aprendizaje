@@ -8,16 +8,23 @@ package semaforos;
  *
  * @author lucho
  */
+import Graficos.HojaSprites;
+import Graficos.Sprite; // Asegúrate de importar la clase Sprite
+
 public abstract class Semaforo implements Runnable {
-    protected static boolean verdeSentido1 = false;
-    protected static boolean verdeSentido2 = false;
-    protected int tiempoVerdeSentido1; // Tiempo en milisegundos para el sentido 1
-    protected int tiempoVerdeSentido2; // Tiempo en milisegundos para el sentido 2
-    protected boolean activo = true; // Control de ejecución del semáforo
+
+    protected  boolean verdeSentido1 = false;
+    protected  boolean verdeSentido2 = false;
+    protected int tiempoVerdeSentido1;
+    protected int tiempoVerdeSentido2;
+    protected boolean activo = true;
+
+    protected Sprite spriteActual; // Cambiar tipo a Sprite
 
     public Semaforo(int tiempoVerdeSentido1, int tiempoVerdeSentido2) {
         this.tiempoVerdeSentido1 = tiempoVerdeSentido1;
         this.tiempoVerdeSentido2 = tiempoVerdeSentido2;
+        spriteActual = Sprite.SEMAFORO_ROJO; // Iniciar en rojo
     }
 
     public synchronized boolean puedeAvanzarSentido1() {
@@ -39,5 +46,9 @@ public abstract class Semaforo implements Runnable {
 
     public void detenerSemaforo() {
         activo = false;
+    }
+
+    public Sprite getSpriteActual() {
+        return spriteActual;
     }
 }

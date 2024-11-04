@@ -26,6 +26,10 @@ public class HojaSprites {
     // hoja de sprites para las personas
     public static HojaSprites personas = new HojaSprites("/recursos/texturas/people_8px.png", 32, 64);
 
+    
+    public static HojaSprites semaforoRojo = new HojaSprites("/recursos/texturas/semaforo_rojo.png", 24, 24); // Ajusta el tamaño según el sprite
+    public static HojaSprites semaforoVerde = new HojaSprites("/recursos/texturas/semaforo_verde.png", 24, 24); // Ajusta el tamaño según el sprite
+
     //fin de la coleccion
     public int obtenAncho() {
         return ancho;

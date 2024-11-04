@@ -270,7 +270,6 @@ public class juego extends Canvas implements Runnable {
         }
     }
 
-    
     private boolean primeraSolicitud = true;
 
     private void actualizar() {
@@ -291,11 +290,10 @@ public class juego extends Canvas implements Runnable {
         if (carritosIntroducidos == totalCarritos && !esperandoMasCarritos) {
             esperandoMasCarritos = true;
 
-            
             if (!primeraSolicitud) {
                 solicitarMasCarritos();
             } else {
-                
+
                 primeraSolicitud = false;
             }
         }
@@ -333,7 +331,7 @@ public class juego extends Canvas implements Runnable {
                     carritosIntroducidos = 0;                   // Reiniciar el contador de carritos introducidos
                     tiempoUltimoCarrito = 0;                    // Reiniciar el tiempo del último carrito
                     esperandoMasCarritos = false;               // Reanudar la introducción de carritos
-                    totalCarritosSolicitados = numCarritos;    
+                    totalCarritosSolicitados = numCarritos;
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ingrese un número válido");
@@ -354,6 +352,12 @@ public class juego extends Canvas implements Runnable {
         mapa.mostrar(jugador.obtenerPosicionX() - pantalla.obtenAncho() / 2 + jugador.obtenSprite().obtenLado() / 2,
                 jugador.obtenerPosicionY() - pantalla.obtenAlto() / 2 + jugador.obtenSprite().obtenLado() / 2, pantalla);
         jugador.mostrar(pantalla);
+
+        // Mostrar los semáforos en posiciones específicas
+        pantalla.mostrarSemaforo(367, 205, semaforo1.getSpriteActual());
+        pantalla.mostrarSemaforo(204, 203, semaforo2.getSpriteActual());
+        pantalla.mostrarSemaforo(204, 70, semaforo3.getSpriteActual());
+        pantalla.mostrarSemaforo(367, 70, semaforo4.getSpriteActual());
 
         for (Criatura carrito : carritos) {
             if (!carrito.estaEliminado()) {

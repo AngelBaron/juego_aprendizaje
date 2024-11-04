@@ -240,7 +240,7 @@ public class pantalla {
         compensacionX -= diferenciaX;
         compensacionY -= diferenciaY;
 
-        int nuevoTamaño = 16; 
+        int nuevoTamaño = 16;
 
         for (int y = 0; y < persona.obtenSprite().obtenLado(); y++) {
             int posicionY = y * nuevoTamaño / persona.obtenSprite().obtenLado() + compensacionY;
@@ -257,7 +257,7 @@ public class pantalla {
 
                 int colorPixelPersona = persona.obtenSprite().pixeles[x + y * persona.obtenSprite().obtenLado()];
 
-                if (colorPixelPersona != 0xff00ff) { 
+                if (colorPixelPersona != 0xff00ff) {
                     for (int dy = 0; dy < nuevoTamaño / persona.obtenSprite().obtenLado(); dy++) {
                         for (int dx = 0; dx < nuevoTamaño / persona.obtenSprite().obtenLado(); dx++) {
                             int escalaX = posicionX + dx;
@@ -269,6 +269,31 @@ public class pantalla {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    public void mostrarSemaforo(int x, int y, Sprite spriteSemaforo) {
+        x -= diferenciaX;
+        y -= diferenciaY;
+
+        for (int spriteY = 0; spriteY < spriteSemaforo.obtenLado(); spriteY++) {
+            int posicionY = y + spriteY;
+            for (int spriteX = 0; spriteX < spriteSemaforo.obtenLado(); spriteX++) {
+                int posicionX = x + spriteX;
+
+                // Verifica que la posición esté dentro de los límites de la pantalla
+                if (posicionX < 0 || posicionX >= ancho || posicionY < 0 || posicionY >= alto) {
+                    continue;
+                }
+
+                int color = spriteSemaforo.pixeles[spriteX + spriteY * spriteSemaforo.obtenLado()];
+
+                // Condición para no dibujar píxeles transparentes
+                if (color != 0x20e4c9) { // Suponiendo que 0xff00ff es el color transparente
+                    pixeles[posicionX + posicionY * ancho] = color;
+                }
+                
             }
         }
     }

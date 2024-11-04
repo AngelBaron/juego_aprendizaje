@@ -24,6 +24,10 @@ public class Sprite {
     public static final Sprite ARR = new Sprite(32, 0, 1, HojaSprites.jugador);
     public static final Sprite ABA = new Sprite(32, 1, 1, HojaSprites.jugador);
 
+    // Agrega estos sprites para el semáforo en rojo y verde
+    public static final Sprite SEMAFORO_ROJO = new Sprite(24, 0, 0, HojaSprites.semaforoRojo); // Configura la posición y hoja correcta
+    public static final Sprite SEMAFORO_VERDE = new Sprite(24, 0, 0, HojaSprites.semaforoVerde); // Configura la posición y hoja correcta
+
     //Fin de la coleccion
     // Personaje Verde
     public static final Sprite PERSONA_VERDE_PARADO_DER = new Sprite(8, 0, 0, HojaSprites.personas);  // Parado mirando a la derecha
@@ -109,6 +113,8 @@ public class Sprite {
         }
 
     }
+    
+    
 
     public void ModificarSprite(final int color) {
         pixeles = new int[lado * lado];

@@ -4,6 +4,8 @@
  */
 package semaforos;
 
+import Graficos.Sprite;
+
 /**
  *
  * @author lucho
@@ -17,21 +19,24 @@ public class Semaforo2 extends Semaforo {
     @Override
     public void cambiarEstado() {
         try {
-            synchronized(this) {
-                System.out.println("SENTIDO 1 TRUE");
-                verdeSentido1 = true;//fdsf
+            // Cambiar a verde para el sentido 1
+            synchronized (this) {
+                verdeSentido1 = true;
                 verdeSentido2 = false;
+                spriteActual = Sprite.SEMAFORO_VERDE; // Cambiar a verde
             }
             Thread.sleep(tiempoVerdeSentido1);
 
-            synchronized(this) {
-                System.out.println("SENTIDO 1 FALSE");
+            // Cambiar a rojo para el sentido 2
+            synchronized (this) {
                 verdeSentido1 = false;
-                verdeSentido2 = true;//fdf
+                verdeSentido2 = true;
+                spriteActual = Sprite.SEMAFORO_ROJO; // Cambiar a rojo
             }
             Thread.sleep(tiempoVerdeSentido2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
 }
