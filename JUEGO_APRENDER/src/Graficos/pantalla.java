@@ -297,6 +297,32 @@ public class pantalla {
             }
         }
     }
+    
+    
+    public void mostrarSemaforo2(int x, int y, Sprite spriteSemaforo) {
+        x -= diferenciaX;
+        y -= diferenciaY;
+
+        for (int spriteY = 0; spriteY < spriteSemaforo.obtenLado(); spriteY++) {
+            int posicionY = y + spriteY;
+            for (int spriteX = 0; spriteX < spriteSemaforo.obtenLado(); spriteX++) {
+                int posicionX = x + spriteX;
+
+                // Verifica que la posición esté dentro de los límites de la pantalla
+                if (posicionX < 0 || posicionX >= ancho || posicionY < 0 || posicionY >= alto) {
+                    continue;
+                }
+
+                int color = spriteSemaforo.pixeles[spriteX + spriteY * spriteSemaforo.obtenLado()];
+
+                // Condición para no dibujar píxeles transparentes
+                if (color != 0x20e4c9) { // Suponiendo que 0xff00ff es el color transparente
+                    pixeles[posicionX + posicionY * ancho] = color;
+                }
+                
+            }
+        }
+    }
 
     public void estableceDiferencia(int diferenciaX, int diferenciaY) {
         this.diferenciaX = diferenciaX;

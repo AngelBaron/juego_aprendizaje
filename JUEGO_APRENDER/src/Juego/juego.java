@@ -354,10 +354,19 @@ public class juego extends Canvas implements Runnable {
         jugador.mostrar(pantalla);
 
         // Mostrar los semáforos en posiciones específicas
-        pantalla.mostrarSemaforo(367, 205, semaforo1.getSpriteActual());
-        pantalla.mostrarSemaforo(204, 203, semaforo2.getSpriteActual());
-        pantalla.mostrarSemaforo(204, 70, semaforo3.getSpriteActual());
-        pantalla.mostrarSemaforo(367, 70, semaforo4.getSpriteActual());
+        pantalla.mostrarSemaforo(347, 200, semaforo1.getSpriteActual());
+        pantalla.mostrarSemaforo(467, 280, semaforo1.getSpriteActual());
+        pantalla.mostrarSemaforo(110, 203, semaforo2.getSpriteActual());
+        pantalla.mostrarSemaforo(230, 273, semaforo2.getSpriteActual());
+        pantalla.mostrarSemaforo(224, 70, semaforo3.getSpriteActual());
+        pantalla.mostrarSemaforo(467, 70, semaforo4.getSpriteActual());
+        pantalla.mostrarSemaforo2(447, 90, semaforo4.getSpriteActual2());
+        pantalla.mostrarSemaforo2(204, 293, semaforo2.getSpriteActual2());
+        pantalla.mostrarSemaforo2(124, 183, semaforo2.getSpriteActual2());
+        pantalla.mostrarSemaforo2(204, 90, semaforo3.getSpriteActual2());
+        pantalla.mostrarSemaforo2(447, 295, semaforo1.getSpriteActual2());
+        pantalla.mostrarSemaforo2(366, 180, semaforo1.getSpriteActual2());
+        
 
         for (Criatura carrito : carritos) {
             if (!carrito.estaEliminado()) {

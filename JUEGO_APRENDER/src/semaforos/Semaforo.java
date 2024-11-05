@@ -19,12 +19,14 @@ public abstract class Semaforo implements Runnable {
     protected int tiempoVerdeSentido2;
     protected boolean activo = true;
 
-    protected Sprite spriteActual; // Cambiar tipo a Sprite
+    protected Sprite spriteActual; // Cambiar tipo a Sprite}
+    protected Sprite spriteActual2; // Cambiar tipo a Sprite
 
     public Semaforo(int tiempoVerdeSentido1, int tiempoVerdeSentido2) {
         this.tiempoVerdeSentido1 = tiempoVerdeSentido1;
         this.tiempoVerdeSentido2 = tiempoVerdeSentido2;
         spriteActual = Sprite.SEMAFORO_ROJO; // Iniciar en rojo
+        spriteActual2 = Sprite.SEMAFORO_VERDE; // Iniciar en rojo
     }
 
     public synchronized boolean puedeAvanzarSentido1() {
@@ -50,5 +52,9 @@ public abstract class Semaforo implements Runnable {
 
     public Sprite getSpriteActual() {
         return spriteActual;
+    }
+    
+    public Sprite getSpriteActual2() {
+        return spriteActual2;
     }
 }

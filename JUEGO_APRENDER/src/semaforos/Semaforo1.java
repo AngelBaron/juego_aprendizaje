@@ -24,6 +24,7 @@ public class Semaforo1 extends Semaforo {
                 verdeSentido1 = true;
                 verdeSentido2 = false;
                 spriteActual = Sprite.SEMAFORO_VERDE; // Cambiar a verde
+                spriteActual2 = Sprite.SEMAFORO_ROJO; // Cambiar a verde
             }
             Thread.sleep(tiempoVerdeSentido1);
 
@@ -32,6 +33,7 @@ public class Semaforo1 extends Semaforo {
                 verdeSentido1 = false;
                 verdeSentido2 = true;
                 spriteActual = Sprite.SEMAFORO_ROJO; // Cambiar a rojo
+                spriteActual2 = Sprite.SEMAFORO_VERDE; // Cambiar a verde
             }
             Thread.sleep(tiempoVerdeSentido2);
         } catch (InterruptedException e) {
