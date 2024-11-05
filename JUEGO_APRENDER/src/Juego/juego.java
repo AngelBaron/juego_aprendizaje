@@ -69,6 +69,8 @@ public class juego extends Canvas implements Runnable {
     private int contadorCarritos = 0;
     private int totalCarritosSolicitados = 0;
 
+    private int indiceColorCarrito = 0;
+
     private static JFrame ventana;
     private static Thread thread;
     private static teclado teclado;
@@ -223,26 +225,76 @@ public class juego extends Canvas implements Runnable {
 
     }
 
+    private Sprite[] obtenerColorCarrito() {
+        Sprite[] spritesCarrito;
+
+        if (indiceColorCarrito % 5 == 0) {
+            spritesCarrito = new Sprite[]{
+                Sprite.CARRO_AZUL_IZQ,
+                Sprite.CARRO_AZUL_DER,
+                Sprite.CARRO_AZUL_ARR,
+                Sprite.CARRO_AZUL_ABA
+            };
+        } else if (indiceColorCarrito % 5 == 1) {
+            spritesCarrito = new Sprite[]{
+                Sprite.CARRO_ROSA_IZQ,
+                Sprite.CARRO_ROSA_DER,
+                Sprite.CARRO_ROSA_ARR,
+                Sprite.CARRO_ROSA_ABA
+            };
+        } else if (indiceColorCarrito % 5 == 2) {
+            
+            spritesCarrito = new Sprite[]{
+                Sprite.IZQ,
+                Sprite.DER,
+                Sprite.ARR,
+                Sprite.ABA
+            };
+        } else if (indiceColorCarrito % 5 == 3) {
+           
+            spritesCarrito = new Sprite[]{
+                Sprite.CARRO_GRIS_IZQ,
+                Sprite.CARRO_GRIS_DER,
+                Sprite.CARRO_GRIS_ARR,
+                Sprite.CARRO_GRIS_ABA
+            };
+        } else {
+            
+            spritesCarrito = new Sprite[]{
+                Sprite.CARRO_CAFE_IZQ,
+                Sprite.CARRO_CAFE_DER,
+                Sprite.CARRO_CAFE_ARR,
+                Sprite.CARRO_CAFE_ABA
+            };
+        }
+
+       
+        indiceColorCarrito++;
+        return spritesCarrito;
+    }
+
     private void generarCarritoEnPuntoDeSpawn(int index) {
         int[] spawnPos = puntosDeSpawn.get(index);
+        Sprite[] spritesCarrito = obtenerColorCarrito(); 
+
         switch (index) {
             case 0:
-                carritos.add(new CARRO2(mapa, Sprite.DER, spawnPos[0], spawnPos[1], semaforo3, semaforo2));
+                carritos.add(new CARRO2(mapa, spritesCarrito[1], spawnPos[0], spawnPos[1], semaforo3, semaforo2, spritesCarrito));
                 break;
             case 1:
-                carritos.add(new CARRO3(mapa, Sprite.DER, spawnPos[0], spawnPos[1], semaforo2, semaforo3));
+                carritos.add(new CARRO3(mapa, spritesCarrito[1], spawnPos[0], spawnPos[1], semaforo2, semaforo3, spritesCarrito));
                 break;
             case 2:
-                carritos.add(new CARRO4(mapa, Sprite.DER, spawnPos[0], spawnPos[1], semaforo1, semaforo2));
+                carritos.add(new CARRO4(mapa, spritesCarrito[1], spawnPos[0], spawnPos[1], semaforo1, semaforo2, spritesCarrito));
                 break;
             case 3:
-                carritos.add(new CARRO5(mapa, Sprite.DER, spawnPos[0], spawnPos[1], semaforo1, semaforo2, semaforo3, semaforo4));
+                carritos.add(new CARRO5(mapa, spritesCarrito[1], spawnPos[0], spawnPos[1], semaforo1, semaforo2, semaforo3, semaforo4, spritesCarrito));
                 break;
             case 4:
-                carritos.add(new CARRO6(mapa, Sprite.DER, spawnPos[0], spawnPos[1], semaforo1, semaforo2, semaforo3, semaforo4));
+                carritos.add(new CARRO6(mapa, spritesCarrito[1], spawnPos[0], spawnPos[1], semaforo1, semaforo2, semaforo3, semaforo4, spritesCarrito));
                 break;
             case 5:
-                carritos.add(new CARRO8(mapa, Sprite.DER, spawnPos[0], spawnPos[1], semaforo2, semaforo3, semaforo4));
+                carritos.add(new CARRO8(mapa, spritesCarrito[1], spawnPos[0], spawnPos[1], semaforo2, semaforo3, semaforo4, spritesCarrito));
                 break;
         }
     }
@@ -366,7 +418,6 @@ public class juego extends Canvas implements Runnable {
         pantalla.mostrarSemaforo2(204, 90, semaforo3.getSpriteActual2());
         pantalla.mostrarSemaforo2(447, 295, semaforo1.getSpriteActual2());
         pantalla.mostrarSemaforo2(366, 180, semaforo1.getSpriteActual2());
-        
 
         for (Criatura carrito : carritos) {
             if (!carrito.estaEliminado()) {

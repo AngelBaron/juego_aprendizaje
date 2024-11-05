@@ -24,6 +24,26 @@ public class Sprite {
     public static final Sprite ARR = new Sprite(32, 0, 1, HojaSprites.jugador);
     public static final Sprite ABA = new Sprite(32, 1, 1, HojaSprites.jugador);
 
+    public static final Sprite CARRO_AZUL_IZQ = new Sprite(32, 0, 0, HojaSprites.carroAzul);
+    public static final Sprite CARRO_AZUL_DER = new Sprite(32, 1, 0, HojaSprites.carroAzul);
+    public static final Sprite CARRO_AZUL_ARR = new Sprite(32, 0, 1, HojaSprites.carroAzul);
+    public static final Sprite CARRO_AZUL_ABA = new Sprite(32, 1, 1, HojaSprites.carroAzul);
+
+    public static final Sprite CARRO_ROSA_IZQ = new Sprite(32, 0, 0, HojaSprites.carroRosa);
+    public static final Sprite CARRO_ROSA_DER = new Sprite(32, 1, 0, HojaSprites.carroRosa);
+    public static final Sprite CARRO_ROSA_ARR = new Sprite(32, 0, 1, HojaSprites.carroRosa);
+    public static final Sprite CARRO_ROSA_ABA = new Sprite(32, 1, 1, HojaSprites.carroRosa);
+
+    public static final Sprite CARRO_GRIS_IZQ = new Sprite(32, 0, 0, HojaSprites.carroGris);
+    public static final Sprite CARRO_GRIS_DER = new Sprite(32, 1, 0, HojaSprites.carroGris);
+    public static final Sprite CARRO_GRIS_ARR = new Sprite(32, 0, 1, HojaSprites.carroGris);
+    public static final Sprite CARRO_GRIS_ABA = new Sprite(32, 1, 1, HojaSprites.carroGris);
+
+    public static final Sprite CARRO_CAFE_IZQ = new Sprite(32, 0, 0, HojaSprites.carroCafe);
+    public static final Sprite CARRO_CAFE_DER = new Sprite(32, 1, 0, HojaSprites.carroCafe);
+    public static final Sprite CARRO_CAFE_ARR = new Sprite(32, 0, 1, HojaSprites.carroCafe);
+    public static final Sprite CARRO_CAFE_ABA = new Sprite(32, 1, 1, HojaSprites.carroCafe);
+
     // Agrega estos sprites para el semáforo en rojo y verde
     public static final Sprite SEMAFORO_ROJO = new Sprite(24, 0, 0, HojaSprites.semaforoRojo); // Configura la posición y hoja correcta
     public static final Sprite SEMAFORO_VERDE = new Sprite(24, 0, 0, HojaSprites.semaforoVerde); // Configura la posición y hoja correcta
@@ -113,8 +133,6 @@ public class Sprite {
         }
 
     }
-    
-    
 
     public void ModificarSprite(final int color) {
         pixeles = new int[lado * lado];
