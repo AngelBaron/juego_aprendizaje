@@ -22,7 +22,7 @@ public class HojaSprites {
 
     //coleccion de hojas de sprites
     public static HojaSprites desierto = new HojaSprites("/recursos/texturas/HOJA_SPRITES.png", 128, 128);
-    public static HojaSprites jugador = new HojaSprites("/recursos/texturas/CARROSPRITE.png", 128, 128);
+    public static HojaSprites jugador = new HojaSprites("/recursos/texturas/CARROSPRITEINITIALD.png", 128, 128);
     // hoja de sprites para las personas
     public static HojaSprites personas = new HojaSprites("/recursos/texturas/people_8px.png", 32, 64);
 
@@ -33,6 +33,8 @@ public class HojaSprites {
     public static HojaSprites carroRosa = new HojaSprites("/recursos/texturas/CARROSPRITEROSA.png", 128, 128);
     public static HojaSprites carroGris= new HojaSprites("/recursos/texturas/CARROSPRITEGRIS.png", 128, 128);
     public static HojaSprites carroCafe= new HojaSprites("/recursos/texturas/CARROSPRITECAFE.png", 128, 128);
+    
+    public static HojaSprites carroVerde = new HojaSprites("/recursos/texturas/CARROSPRITE.png", 128, 128);
 
     //fin de la coleccion
     public int obtenAncho() {

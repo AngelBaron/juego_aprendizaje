@@ -43,6 +43,12 @@ public class Sprite {
     public static final Sprite CARRO_CAFE_DER = new Sprite(32, 1, 0, HojaSprites.carroCafe);
     public static final Sprite CARRO_CAFE_ARR = new Sprite(32, 0, 1, HojaSprites.carroCafe);
     public static final Sprite CARRO_CAFE_ABA = new Sprite(32, 1, 1, HojaSprites.carroCafe);
+    
+    
+    public static final Sprite CARRO_VERDE_IZQ = new Sprite(32, 0, 0, HojaSprites.carroVerde);
+    public static final Sprite CARRO_VERDE_DER = new Sprite(32, 1, 0, HojaSprites.carroVerde);
+    public static final Sprite CARRO_VERDE_ARR = new Sprite(32, 0, 1, HojaSprites.carroVerde);
+    public static final Sprite CARRO_VERDE_ABA = new Sprite(32, 1, 1, HojaSprites.carroVerde);
 
     // Agrega estos sprites para el semáforo en rojo y verde
     public static final Sprite SEMAFORO_ROJO = new Sprite(24, 0, 0, HojaSprites.semaforoRojo); // Configura la posición y hoja correcta

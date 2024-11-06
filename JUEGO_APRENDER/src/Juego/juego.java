@@ -245,10 +245,10 @@ public class juego extends Canvas implements Runnable {
         } else if (indiceColorCarrito % 5 == 2) {
             
             spritesCarrito = new Sprite[]{
-                Sprite.IZQ,
-                Sprite.DER,
-                Sprite.ARR,
-                Sprite.ABA
+                Sprite.CARRO_VERDE_IZQ,
+                Sprite.CARRO_VERDE_DER,
+                Sprite.CARRO_VERDE_ARR,
+                Sprite.CARRO_VERDE_ABA
             };
         } else if (indiceColorCarrito % 5 == 3) {
            
